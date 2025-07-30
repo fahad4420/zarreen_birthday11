@@ -1,0 +1,268 @@
+/* ------------------ RESET + BASE ------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Dancing Script', cursive, sans-serif;
+}
+
+html, body {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* ------------------ START SCREEN ------------------ */
+.startForm {
+  z-index: 7;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(72, 209, 204, 1);
+}
+
+.startLetter {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -90%);
+  background-color: white;
+  max-height: 500px;
+  width: 800px;
+  padding: 20px 20px 80px;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
+.startLetter.active {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ------------------ SCROLLBAR ------------------ */
+.contentLetter {
+  background-color: whitesmoke;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-size: 34px;
+  padding: 20px;
+  scrollbar-width: thin;
+  scrollbar-color: pink white;
+}
+
+.contentLetter::-webkit-scrollbar {
+  width: 4px;
+}
+.contentLetter::-webkit-scrollbar-thumb {
+  background-color: pink;
+}
+
+/* ------------------ ELEMENTS ------------------ */
+.myAI {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  height: 100px;
+}
+
+.sticker {
+  position: absolute;
+  bottom: 0;
+  transform: translateY(60%);
+  height: 100px;
+  width: 40px;
+  background-color: pink;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+  border-radius: 10px;
+  animation: animateStartLetter 1s ease-in-out infinite alternate;
+}
+
+.sticker::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 6px solid rgb(253, 178, 191);
+}
+
+/* ------------------ BUTTONS ------------------ */
+.recieve {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: transparent;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.recieve:hover {
+  cursor: grab;
+  box-shadow: 4px 4px 4px gray;
+}
+
+.recieve:active {
+  cursor: grabbing;
+}
+
+.recieve > i {
+  font-size: 30px;
+  color: rgb(250, 147, 164);
+}
+
+/* ------------------ PARTY BACKGROUND ------------------ */
+.backgroundParty {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(72, 209, 204, 1);
+}
+
+.balloon {
+  position: absolute;
+  bottom: 30px;
+  width: 150px;
+  animation: animateBalloon 1s ease-in-out infinite alternate;
+  z-index: 5;
+}
+
+.balloon1 { left: 10%; }
+.balloon2 { right: 10%; }
+
+.bannerParty {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 20px);
+  animation: animateBanner 1s ease-in-out 1s infinite alternate;
+  z-index: 5;
+}
+
+/* ------------------ ANIMATIONS ------------------ */
+@keyframes animateBalloon {
+  to {
+    transform: translateY(-30px) scale(1.05) rotate(3deg);
+  }
+}
+
+@keyframes animateBanner {
+  to {
+    transform: translate(-50%, -20px);
+  }
+}
+
+@keyframes animateBannerMobile {
+  to {
+    transform: translate(-50%, -40px);
+  }
+}
+
+@keyframes animateStartLetter {
+  from { transform: rotate(30deg) translateY(60%); }
+  to { transform: rotate(-30deg) translateY(60%); }
+}
+
+@keyframes floatHearts {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-100px); }
+}
+
+/* ------------------ LETTER STYLING ------------------ */
+.letterForm {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  transition: 0.5s;
+  z-index: 6;
+}
+
+.letterForm::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: "";
+  width: 100px;
+  height: 100px;
+  background-color: #e69c9f;
+  clip-path: polygon(0 40%, 50% 0, 100% 40%, 100% 100%, 0 100%);
+}
+
+.letterForm::after {
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  bottom: -30px;
+  background-color: #000;
+  opacity: 0.4;
+  filter: blur(10px);
+  content: "";
+}
+
+.content {
+  position: absolute;
+  background-color: #F2EEE4;
+  width: 80%;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, -10px);
+  height: 80px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 6px solid #A88557;
+  transition: 0.5s;
+}
+
+.content > p {
+  font-size: 24px;
+}
+
+/* ------------------ EXTRA SPARKLE ------------------ */
+.heartSparkle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: url('heart.png') no-repeat center;
+  background-size: contain;
+  animation: floatHearts 3s ease-in-out infinite;
+  z-index: 9;
+}
+
+/* ------------------ MOBILE RESPONSIVE ------------------ */
+@media all and (max-width: 768px) {
+  .startLetter { width: 90%; padding-bottom: 60px !important; }
+  .contentLetter { font-size: 24px; }
+  .myAI { height: 80px; bottom: 10px; right: 10px; }
+  .recieve { bottom: 10px; }
+  .recieve > i { font-size: 24px; }
+
+  .balloon { bottom: 100px; width: 100px; }
+  .balloon1 { left: 10%; }
+  .balloon2 { right: 10%; }
+
+  .bannerParty {
+    top: 100px;
+    width: 100%;
+    transform: translate(-50%, 0);
+    animation: animateBannerMobile 1s ease-in-out infinite alternate;
+  }
+
+  .content {
+    bottom: 0;
+    transform: translate(-50%, 0);
+    height: 80px;
+  }
+
+  .content.actived {
+    bottom: 100px;
+  }
+}
